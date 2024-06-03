@@ -15,6 +15,7 @@ import bgWork.InitProcess;
 import mod.instance.AssociationLine;
 import mod.instance.BasicClass;
 import mod.instance.CompositionLine;
+import mod.instance.DependencyLine;
 import mod.instance.GeneralizationLine;
 import mod.instance.SelectComp;
 import mod.instance.UseCase;
@@ -118,12 +119,14 @@ public class FuncPanelHandler extends PanelHandler
 			case 1:
 				return new ImageIcon("icon/association_line.jpg");
 			case 2:
-				return new ImageIcon("icon/generalization_line.jpg");
+				return new ImageIcon("icon/dependency_line.jpg");
 			case 3:
-				return new ImageIcon("icon/composition_line.jpg");
+				return new ImageIcon("icon/generalization_line.jpg");
 			case 4:
-				return new ImageIcon("icon/class.jpg");
+				return new ImageIcon("icon/composition_line.jpg");
 			case 5:
+				return new ImageIcon("icon/class.jpg");
+			case 6:
 				return new ImageIcon("icon/use_case.jpg");
 			default:
 				return null;
@@ -139,12 +142,14 @@ public class FuncPanelHandler extends PanelHandler
 			case 1:
 				return new AssociationLine(core.getCanvasPanelHandler());
 			case 2:
-				return new GeneralizationLine(core.getCanvasPanelHandler());
+				return new DependencyLine(core.getCanvasPanelHandler());
 			case 3:
-				return new CompositionLine(core.getCanvasPanelHandler());
+				return new GeneralizationLine(core.getCanvasPanelHandler());
 			case 4:
-				return new BasicClass(core.getCanvasPanelHandler());
+				return new CompositionLine(core.getCanvasPanelHandler());
 			case 5:
+				return new BasicClass(core.getCanvasPanelHandler());
+			case 6:
 				return new UseCase(core.getCanvasPanelHandler());
 			default:
 				return null;
