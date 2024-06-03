@@ -1,0 +1,13 @@
+#檔案名稱 .gitignore
+
+#忽略所有icon資料夾中的檔案
+icon/
+
+#忽略bin資料夾
+bin/
+
+.settings
+
+.classpath
+
+.project
