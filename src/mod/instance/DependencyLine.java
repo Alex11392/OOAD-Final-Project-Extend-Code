@@ -72,6 +72,9 @@ public class DependencyLine extends JPanel
         xPoints[1] = (int) (x2 - arrowSize * Math.cos(angle + Math.PI / 6));
         yPoints[1] = (int) (y2 - arrowSize * Math.sin(angle + Math.PI / 6));
 
+		// 临时设置为实线
+		g2d.setStroke(new BasicStroke(1));
+		
         g2d.drawLine(xPoints[0], yPoints[0], x2, y2);
         g2d.drawLine(xPoints[1], yPoints[1], x2, y2);
     
