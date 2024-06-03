@@ -8,6 +8,7 @@ import bgWork.handler.MenuBarHandler;
 import mod.instance.AssociationLine;
 import mod.instance.BasicClass;
 import mod.instance.CompositionLine;
+import mod.instance.DependencyLine;
 import mod.instance.GeneralizationLine;
 import mod.instance.GroupContainer;
 import mod.instance.UseCase;
@@ -88,6 +89,11 @@ public class Core extends InitProcess
 		return obj instanceof AssociationLine;
 	}
 
+	public boolean isDependencyLine(Object obj)
+	{
+		return obj instanceof DependencyLine;
+	}
+
 	public boolean isCompositionLine(Object obj)
 	{
 		return obj instanceof CompositionLine;
@@ -104,13 +110,17 @@ public class Core extends InitProcess
 		{
 			return 0;
 		}
-		else if (isCompositionLine(obj))
+		else if (isDependencyLine(obj))
 		{
 			return 1;
 		}
-		else if (isGeneralizationLine(obj))
+		else if (isCompositionLine(obj))
 		{
 			return 2;
+		}
+		else if (isGeneralizationLine(obj))
+		{
+			return 3;
 		}
 		return -1;
 	}
@@ -134,17 +144,21 @@ public class Core extends InitProcess
 		{
 			return 2;
 		}
-		else if (isCompositionLine(obj))
+		else if (isDependencyLine(obj))
 		{
 			return 3;
 		}
-		else if (isGeneralizationLine(obj))
+		else if (isCompositionLine(obj))
 		{
 			return 4;
 		}
-		else if (isGroupContainer(obj))
+		else if (isGeneralizationLine(obj))
 		{
 			return 5;
+		}
+		else if (isGroupContainer(obj))
+		{
+			return 6;
 		}
 		return -1;
 	}
