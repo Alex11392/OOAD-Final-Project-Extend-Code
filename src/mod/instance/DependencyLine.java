@@ -45,8 +45,8 @@ public class DependencyLine extends JPanel
         Graphics2D g2d = (Graphics2D) g;
     
         // 設置虛線的樣式
-        float[] dashPattern = {10, 10}; // 虛線的長度和間距
-        g2d.setStroke(new BasicStroke(2, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10, dashPattern, 0));
+        float[] dashPattern = {5, 5}; // 虛線的長度和間距
+        g2d.setStroke(new BasicStroke(1, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER, 10, dashPattern, 0));
     
         // 計算相對於面板位置的連接點
         renewConnect();
