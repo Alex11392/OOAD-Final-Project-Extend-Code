@@ -165,9 +165,9 @@ public class DependencyLine extends JPanel
 	@Override
 	public void paintSelect(Graphics gra)
 	{
-		gra.setColor(Color.BLACK);
-		gra.fillRect(fp.x, fp.y, selectBoxSize, selectBoxSize);
-		gra.fillRect(tp.x, tp.y, selectBoxSize, selectBoxSize);
+		gra.setColor(Color.RED);
+		gra.fillOval(fp.x - this.getLocation().x-2, fp.y - this.getLocation().y-2, selectBoxSize, selectBoxSize);
+		gra.fillOval(tp.x - this.getLocation().x-2, tp.y - this.getLocation().y-2, selectBoxSize, selectBoxSize);
 	}
 
 	public boolean isSelect()
