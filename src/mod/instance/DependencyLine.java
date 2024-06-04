@@ -182,10 +182,14 @@ public class DependencyLine extends JPanel
 	
 	//判斷Line是否在這個Port上
 	public boolean isOnPort(JPanel comp, Point p){
-		if(p.equals(fp) && comp == from){
+		if(fp.x-1 <= p.x && p.x <= fp.x+1
+		&& fp.y-1 <= p.y && p.y <= fp.y+1
+		&& comp == from){
 			return true;
 		}
-		else if(p.equals(tp) && comp == to){
+		else if(tp.x-1 <= p.x && p.x <= tp.x+1
+		&& tp.y-1 <= p.y && p.y <= tp.y+1
+		&& comp == to){
 			return true;
 		}
 		else{
