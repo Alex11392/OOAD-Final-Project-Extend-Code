@@ -161,4 +161,14 @@ public class CompositionLine extends JPanel
 	{
 		this.isSelect = isSelect;
 	}
+
+	//判斷Line是否在這個Port上
+	public boolean isOnPort(Point p){
+		if(p.equals(fp) || p.equals(tp)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }
