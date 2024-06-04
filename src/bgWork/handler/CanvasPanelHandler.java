@@ -26,6 +26,7 @@ import mod.instance.UseCase;
 public class CanvasPanelHandler extends PanelHandler
 {
 	Vector <JPanel>	members		= new Vector <>();
+	Vector <JPanel> lineMembers = new Vector <>();
 	Vector <JPanel>	selectComp	= new Vector <>();
 	Vector <JPanel> selectLine  = new Vector <>();
 	int				boundShift	= 10;
@@ -108,6 +109,11 @@ public class CanvasPanelHandler extends PanelHandler
 
 	void selectByClick(MouseEvent e)
 	{
+		//將所有Line設為unSelect
+		for(JPanel lineMember:lineMembers){
+			setSelectAllType(lineMember, false);
+		}
+
 		boolean isSelect = false;
 		selectComp = new Vector <>();
 		for (int i = 0; i < members.size(); i ++)
@@ -117,7 +123,7 @@ public class CanvasPanelHandler extends PanelHandler
 			{
 				//選取點擊位置的Line
 				lineSelect(members.elementAt(i), e.getPoint());
-				
+
 				switch (core.isFuncComponent(members.elementAt(i)))
 				{
 					case 0:
@@ -161,34 +167,35 @@ public class CanvasPanelHandler extends PanelHandler
 	}
 
 	void lineSelect(JPanel comp, Point p){
+		
 		selectLine.clear();
 
 		//尋找該Port上的Line
-		for (int i = 0; i < members.size(); i ++){
-			switch (core.isFuncComponent(members.elementAt(i)))
+		for (int i = 0; i < lineMembers.size(); i ++){
+			switch (core.isFuncComponent(lineMembers.elementAt(i)))
 			{
 				case 2:
-					if(((AssociationLine)members.elementAt(i)).isOnPort(comp, p)){
-						((AssociationLine)members.elementAt(i)).setSelect(true);
-						selectLine.add(members.elementAt(i));
+					if(((AssociationLine)lineMembers.elementAt(i)).isOnPort(comp, p)){
+						((AssociationLine)lineMembers.elementAt(i)).setSelect(true);
+						selectLine.add(lineMembers.elementAt(i));
 					}
 					break;
 				case 3:
-					if(((DependencyLine)members.elementAt(i)).isOnPort(comp, p)){
-						((DependencyLine)members.elementAt(i)).setSelect(true);
-						selectLine.add(members.elementAt(i));
+					if(((DependencyLine)lineMembers.elementAt(i)).isOnPort(comp, p)){
+						((DependencyLine)lineMembers.elementAt(i)).setSelect(true);
+						selectLine.add(lineMembers.elementAt(i));
 					}
 					break;
 				case 4:
-					if(((CompositionLine)members.elementAt(i)).isOnPort(comp, p)){
-						((CompositionLine)members.elementAt(i)).setSelect(true);
-						selectLine.add(members.elementAt(i));
+					if(((CompositionLine)lineMembers.elementAt(i)).isOnPort(comp, p)){
+						((CompositionLine)lineMembers.elementAt(i)).setSelect(true);
+						selectLine.add(lineMembers.elementAt(i));
 					}
 					break;
 				case 5:
-					if(((GeneralizationLine)members.elementAt(i)).isOnPort(comp, p)){
-						((GeneralizationLine)members.elementAt(i)).setSelect(true);
-						selectLine.add(members.elementAt(i));
+					if(((GeneralizationLine)lineMembers.elementAt(i)).isOnPort(comp, p)){
+						((GeneralizationLine)lineMembers.elementAt(i)).setSelect(true);
+						selectLine.add(lineMembers.elementAt(i));
 					}
 					break;
 				default:
@@ -440,6 +447,7 @@ public class CanvasPanelHandler extends PanelHandler
 					default:
 						break;
 				}
+				lineMembers.insertElementAt(funcObj, 0);
 				contextPanel.add(funcObj, 0);
 				break;
 		}
