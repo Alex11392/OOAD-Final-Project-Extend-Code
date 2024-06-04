@@ -66,9 +66,10 @@ public class CanvasPanelHandler extends PanelHandler
 			case 1:
 			case 2:
 			case 3:
-				break;
 			case 4:
+				break;
 			case 5:
+			case 6:
 				addObject(core.getCurrentFunc(), e.getPoint());
 				break;
 			default:
@@ -87,10 +88,11 @@ public class CanvasPanelHandler extends PanelHandler
 			case 1:
 			case 2:
 			case 3:
+			case 4:
 				addLine(core.getCurrentFunc(), dp);
 				break;
-			case 4:
 			case 5:
+			case 6:
 				break;
 			default:
 				break;
