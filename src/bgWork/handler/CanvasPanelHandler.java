@@ -27,6 +27,7 @@ public class CanvasPanelHandler extends PanelHandler
 {
 	Vector <JPanel>	members		= new Vector <>();
 	Vector <JPanel>	selectComp	= new Vector <>();
+	Vector <JPanel> selectLine  = new Vector <>();
 	int				boundShift	= 10;
 
 	public CanvasPanelHandler(JPanel Container, InitProcess process)
@@ -154,6 +155,64 @@ public class CanvasPanelHandler extends PanelHandler
 			}
 		}
 		repaintComp();
+	}
+
+	void lineSelect(JPanel comp, Point p){
+		//判斷使否在Port上
+		if(isPort(comp, p)){
+			//尋找該Port上的Line
+			for (int i = 0; i < members.size(); i ++){
+				switch (core.isFuncComponent(members.elementAt(i)))
+				{
+					case 2:
+						if(((AssociationLine)members.elementAt(i)).isOnPort(p)){
+							((AssociationLine)members.elementAt(i)).setSelect(true);
+							selectLine.add(members.elementAt(i));
+						}
+						break;
+					case 3:
+						if(((DependencyLine)members.elementAt(i)).isOnPort(p)){
+							((DependencyLine)members.elementAt(i)).setSelect(true);
+							selectLine.add(members.elementAt(i));
+						}
+						break;
+					case 4:
+						if(((CompositionLine)members.elementAt(i)).isOnPort(p)){
+							((CompositionLine)members.elementAt(i)).setSelect(true);
+							selectLine.add(members.elementAt(i));
+						}
+						break;
+					case 5:
+						if(((GeneralizationLine)members.elementAt(i)).isOnPort(p)){
+							((GeneralizationLine)members.elementAt(i)).setSelect(true);
+							selectLine.add(members.elementAt(i));
+						}
+						break;
+					default:
+						break;
+				}
+			}
+		}
+	}
+
+	boolean isPort(JPanel comp, Point p){
+		if(p.x == comp.getX() + comp.getWidth() / 2){
+			if(p.y == comp.getY() || p.y == comp.getY() + comp.getHeight()){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else if(p.y == comp.getY() + comp.getHeight() / 2){
+			if(p.x == comp.getX() || p.x == comp.getX() + comp.getWidth()){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else{return false;}
 	}
 
 	boolean groupIsSelect(GroupContainer container, Point point)
